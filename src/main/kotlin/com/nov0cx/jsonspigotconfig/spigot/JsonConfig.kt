@@ -1,5 +1,6 @@
 package com.nov0cx.jsonspigotconfig.spigot
 
+import com.nov0cx.jsonspigotconfig.json.Json
 import java.io.File
 
 /*
@@ -10,6 +11,7 @@ import java.io.File
 class JsonConfig() {
 
     private lateinit var file: File
+    private var json: Json = Json()
 
     companion object Static {
         private lateinit var instance: JsonConfig
@@ -23,4 +25,9 @@ class JsonConfig() {
     fun init(pluginName: String, configName: String) {
         file = File("./plugins/$pluginName/$configName.json")
     }
+
+    fun writeClass(clazz: Class<Any>) {
+        json.writeObject(file, clazz)
+    }
+
 }
