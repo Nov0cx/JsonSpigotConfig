@@ -7,6 +7,7 @@ public class ExampleJava extends JavaPlugin {
     @Override
     public void onEnable() {
         JsonConfig.get().init("ExamplePlugin", "Config");
+
     }
 
     @Override

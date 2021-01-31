@@ -16,12 +16,7 @@ class JsonConfig() {
 
         @JvmStatic
         fun get(): JsonConfig {
-            if (instance == null) {
-                instance = JsonConfig()
-                return instance
-            } else {
-                return instance
-            }
+            return instance
         }
     }
 
