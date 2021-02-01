@@ -26,51 +26,111 @@ class JsonConfig() {
 
     fun init(pluginName: String, configName: String) {
         file = File("./plugins/$pluginName/$configName.json")
+        if(!file.exists())
+            file.createNewFile()
     }
 
     fun writeClass(clazz: Class<Any>) {
         json.writeObject(file, clazz)
     }
 
-    fun writeString(file: File, name: String, value: String) {
+    fun writeString(name: String, value: String) {
         json.writeString(file, name, value)
     }
 
-    fun writeInt(file: File, name: String, value: Int) {
+    fun writeInt(name: String, value: Int) {
         json.writeInt(file, name, value)
     }
 
-    fun writeFloat(file: File, name: String, value: Float) {
+    fun writeFloat(name: String, value: Float) {
         json.writeFloat(file, name, value)
     }
 
-    fun writeDouble(file: File, name: String, value: Double) {
+    fun writeDouble(name: String, value: Double) {
         json.writeDouble(file, name, value)
     }
 
-    fun writeLong(file: File, name: String, value: Long) {
+    fun writeLong(name: String, value: Long) {
         json.writeLong(file, name, value)
     }
 
-    fun writeShort(file: File, name: String, value: Short) {
+    fun writeShort(name: String, value: Short) {
         json.writeShort(file, name, value)
     }
 
-    fun writeByteArray(file: File, name: String, value: ByteArray) {
+    fun writeByteArray(name: String, value: ByteArray) {
         json.writeByteArray(file, name, value)
     }
 
-    fun writeBool(file: File, name: String, value: Boolean) {
+    fun writeBool(name: String, value: Boolean) {
         json.writeBool(file, name, value)
     }
 
-    fun writeBigDecimal(file: File, name: String, value: BigDecimal) {
+    fun writeBigDecimal(name: String, value: BigDecimal) {
         json.writeBigDecimal(file, name, value)
     }
 
-    fun writeBigInteger(file: File, name: String, value: BigInteger) {
+    fun writeBigInteger(name: String, value: BigInteger) {
         json.writeBigInteger(file, name, value)
     }
 
+    fun readAny(name: String): Any {
+        return json.read(file, name)
+    }
 
+    fun readAnyArray(name: String): Array<*> {
+        val result = json.read(file, name)
+        if(result is Array<*>) {
+            return result
+        }
+        throw Exception("The value $name isn't an Array!")
+    }
+
+    fun readInt(name: String): Int {
+        val result = json.read(file, name)
+        if(result is Int) {
+            return result
+        }
+        throw Exception("The value $name isn't an Int!")
+    }
+
+    fun readLong(name: String): Long {
+        val result = json.read(file, name)
+        if(result is Long) {
+            return result
+        }
+        throw Exception("The value $name isn't an Long!")
+    }
+
+    fun readShort(name: String): Short {
+        val result = json.read(file, name)
+        if(result is Short) {
+            return result
+        }
+        throw Exception("The value $name isn't an Short!")
+    }
+
+    fun readByte(name: String): Byte {
+        val result = json.read(file, name)
+        if(result is Byte) {
+            return result
+        }
+        throw Exception("The value $name isn't an Byte!")
+    }
+
+    fun readFloat(name: String): Float {
+        val result = json.read(file, name)
+        if(result is Float) {
+            return result
+        }
+        throw Exception("The value $name isn't an Float!")
+    }
+
+    fun readDouble(name: String): Double {
+        val result = json.read(file, name)
+        if(result is Double) {
+            return result
+        }
+        throw Exception("The value $name isn't an Double!")
+    }
 }
