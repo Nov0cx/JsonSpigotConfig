@@ -2,6 +2,8 @@ package com.nov0cx.jsonspigotconfig.json
 
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.databind.node.ObjectNode
+import com.nov0cx.jsonspigotconfig.exceptions.JsonValueNotFoundException
 import java.io.File
 import java.math.BigDecimal
 import java.math.BigInteger
@@ -69,6 +71,15 @@ class Json {
     fun writeBigInteger(file: File, name: String, value: BigInteger) {
         val node = mapper.createObjectNode().put(name, value)
         mapper.writeValue(file, node)
+    }
+
+    fun read(file: File, name: String): Any {
+        val node = mapper.createObjectNode()
+        if(node.has(name)) {
+            return node.get(name)
+        } else {
+            throw JsonValueNotFoundException(name, fileName = file.name)
+        }
     }
 
     fun <T> fromJson(node: JsonNode, clazz: Class<T>): T {

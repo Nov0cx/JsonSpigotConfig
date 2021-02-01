@@ -10,13 +10,14 @@ version = "1.0.0"
 
 repositories {
     mavenCentral()
-    maven(url = "https://jitpack.io")
+    maven(url = "https://hub.spigotmc.org/nexus/content/repositories/snapshots/")
+    maven(url = "https://oss.sonatype.org/content/repositories/snapshots")
 }
 
 dependencies {
     implementation("com.fasterxml.jackson.core:jackson-databind:2.9.9")
     implementation("com.fasterxml.jackson.core:jackson-core:2.9.9")
-    compileOnly("com.github.SpigotMC:Spigot-Api:1.7.3-R3")
+    compileOnly("org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT")
 }
 
 tasks.withType<KotlinCompile> {
