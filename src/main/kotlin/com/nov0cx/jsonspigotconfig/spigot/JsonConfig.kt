@@ -16,7 +16,7 @@ class JsonConfig() {
     private var json: Json = Json()
 
     companion object Static {
-        private lateinit var instance: JsonConfig
+        private var instance = JsonConfig()
 
         @JvmStatic
         fun get(): JsonConfig {
